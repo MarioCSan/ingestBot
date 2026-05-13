@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find /Users/mario/Documents/Proyectos/AlphaSIGCore/src/infrastructure/messaging /Users/mario/Documents/Proyectos/AlphaSIGCore/src/infrastructure/persistence/dual_* /Users/mario/Documents/Proyectos/AlphaSIGCore/src/domain/ports/message_publisher_port.py -type f)"
+      "Bash(find /Users/mario/Documents/Proyectos/AlphaSIGCore/src/infrastructure/messaging /Users/mario/Documents/Proyectos/AlphaSIGCore/src/infrastructure/persistence/dual_* /Users/mario/Documents/Proyectos/AlphaSIGCore/src/domain/ports/message_publisher_port.py -type f)",
+      "Bash(docker compose *)"
     ]
   }
 }

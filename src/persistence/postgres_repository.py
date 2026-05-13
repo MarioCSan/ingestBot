@@ -10,6 +10,10 @@ from ..models import SignalMessage, PositionMessage
 
 logger = logging.getLogger(__name__)
 
+def _r(v, d: int = 8):
+    """Round a float to d decimal places; pass None through."""
+    return round(float(v), d) if v is not None else None
+
 _SCHEMA_SQL = (Path(__file__).parent / "schema.sql").read_text()
 
 
@@ -49,21 +53,21 @@ class PostgresRepository:
                 signal.market_id,
                 signal.question,
                 signal.direction,
-                signal.market_price,
-                signal.estimated_probability,
-                signal.edge,
-                signal.confidence,
-                signal.kelly_fraction,
-                signal.position_size_usd,
-                signal.spread,
-                signal.liquidity,
+                _r(signal.market_price),
+                _r(signal.estimated_probability),
+                _r(signal.edge),
+                _r(signal.confidence),
+                _r(signal.kelly_fraction),
+                _r(signal.position_size_usd),
+                _r(signal.spread),
+                _r(signal.liquidity),
                 signal.volatility_regime,
                 signal.model_name,
                 signal.slug,
                 signal.status,
                 signal.generated_at,
                 signal.resolved_at,
-                signal.realized_pnl,
+                _r(signal.realized_pnl),
                 signal.order_id,
                 signal.notes,
             )
@@ -96,21 +100,21 @@ class PostgresRepository:
                 position.question,
                 position.city_code,
                 position.direction,
-                position.entry_price,
-                position.entry_temp_estimate_c,
-                position.size_usd,
+                _r(position.entry_price),
+                _r(position.entry_temp_estimate_c),
+                _r(position.size_usd),
                 position.slug,
                 position.order_id,
                 position.token_id,
-                position.temp_shift_threshold_c,
-                position.stop_loss_pct,
-                position.take_profit_pct,
+                _r(position.temp_shift_threshold_c),
+                _r(position.stop_loss_pct),
+                _r(position.take_profit_pct),
                 position.status,
                 position.opened_at,
                 position.closed_at,
-                position.exit_price,
+                _r(position.exit_price),
                 position.exit_reason,
-                position.realized_pnl,
+                _r(position.realized_pnl),
             )
 
     async def close(self) -> None:

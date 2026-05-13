@@ -13,7 +13,7 @@ class SignalMessage(BaseModel):
     question: Optional[str] = None
     direction: str
     market_price: float
-    estimated_probability: float
+    estimated_probability: Optional[float] = None
     edge: float
     confidence: float
     kelly_fraction: float

@@ -54,7 +54,7 @@ class IngestConsumer:
         await asyncio.Future()  # run forever
 
     async def _handle_signal(self, message: AbstractIncomingMessage) -> None:
-        async with message.process(requeue_on_error=True):
+        async with message.process(requeue=True):
             try:
                 payload = json.loads(message.body)
                 signal = SignalMessage.model_validate(payload)
@@ -65,7 +65,7 @@ class IngestConsumer:
                 raise
 
     async def _handle_position(self, message: AbstractIncomingMessage) -> None:
-        async with message.process(requeue_on_error=True):
+        async with message.process(requeue=True):
             try:
                 payload = json.loads(message.body)
                 position = PositionMessage.model_validate(payload)
